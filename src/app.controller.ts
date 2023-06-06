@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateCustomerUseCase } from './@core/useCase/create-customer.use-case';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { ReturnCustomerDto } from './dto/return-customer.dto';
@@ -19,7 +19,12 @@ export class AppController {
   }
 
   @Get()
-  findCustomrs() {
+  findAll() {
     return this.listAllCustomerUseCase.findAll();
+  }
+
+  @Get(':id')
+  findById(@Param('id') id: string) {
+    return;
   }
 }

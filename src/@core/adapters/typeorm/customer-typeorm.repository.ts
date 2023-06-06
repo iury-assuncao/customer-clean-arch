@@ -2,7 +2,7 @@ import { Customer } from 'src/@core/domain/customer.entity';
 import { CustomerRepositoryInterface } from 'src/@core/domain/customer.repository';
 import { Repository } from 'typeorm';
 
-export class CsutomerTypeOrmRepository implements CustomerRepositoryInterface {
+export class CustomerTypeOrmRepository implements CustomerRepositoryInterface {
   constructor(private ormRepository: Repository<Customer>) {}
 
   insert(customer: Customer): Promise<Customer> {

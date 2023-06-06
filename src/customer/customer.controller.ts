@@ -1,11 +1,11 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { CreateCustomerUseCase } from './@core/useCase/create-customer.use-case';
-import { CreateCustomerDto } from './dto/create-customer.dto';
-import { ReturnCustomerDto } from './dto/return-customer.dto';
-import { ListAllCustomersUseCase } from './@core/useCase/list-customers.use-case';
+import { CreateCustomerUseCase } from 'src/@core/useCase/create-customer.use-case';
+import { ListAllCustomersUseCase } from 'src/@core/useCase/list-customers.use-case';
+import { CreateCustomerDto } from 'src/customer/dto/create-customer.dto';
+import { ReturnCustomerDto } from 'src/customer/dto/return-customer.dto';
 
 @Controller('customer')
-export class AppController {
+export class CustomerController {
   constructor(
     private readonly createCustomerUseCase: CreateCustomerUseCase,
     private readonly listAllCustomerUseCase: ListAllCustomersUseCase,

@@ -1,9 +1,9 @@
 import { DataSource } from 'typeorm';
+import { Customer } from '../../domain/entities/customer.entity';
 import { CustomerSchema } from './customer.schema';
-import { Customer } from '../../domain/customer.entity';
 
 describe('Customer schema', () => {
-  it('create', async () => {
+  test('create', async () => {
     const dataSource = new DataSource({
       type: 'sqlite',
       database: ':memory:',
@@ -13,9 +13,9 @@ describe('Customer schema', () => {
     });
     await dataSource.initialize();
     const customer = Customer.create({
-      cnpj: '545454545 teste',
-      fantasyName: 'fantasy',
-      consultantsTotal: 10,
+      cnpj: 'teste 222',
+      fantasyName: 'fantasy 222',
+      consultantsTotal: 150,
     });
     const customerRepository = dataSource.getRepository(Customer);
     await customerRepository.save(customer);

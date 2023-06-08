@@ -1,7 +1,7 @@
-import { Customer } from 'src/@core/domain/customer.entity';
+import { Customer } from '../../domain/entities/customer.entity';
 import { EntitySchema } from 'typeorm';
 
-export const CustomerSchema = new EntitySchema({
+export const CustomerSchema = new EntitySchema<Customer>({
   name: 'customer',
   target: Customer,
   columns: {
@@ -19,7 +19,6 @@ export const CustomerSchema = new EntitySchema({
     },
     consultantsTotal: {
       type: Number,
-      length: 255,
     },
   },
 });

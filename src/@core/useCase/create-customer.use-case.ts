@@ -1,5 +1,5 @@
-import { Customer } from '../domain/customer.entity';
-import { CustomerRepositoryInterface } from '../domain/customer.repository';
+import { Customer } from '../domain/entities/customer.entity';
+import { CustomerRepositoryInterface } from '../domain/repository/customer.repository';
 
 type CustomerPropsInput = {
   cnpj: string;
@@ -18,6 +18,7 @@ export class CreateCustomerUseCase {
   constructor(private customerRepository: CustomerRepositoryInterface) {}
   async create(input: CustomerPropsInput): Promise<CustomerPropsOutput> {
     const customer = Customer.create(input);
+    console.log('************ case *******');
     await this.customerRepository.insert(customer);
     return customer.toJSON();
   }

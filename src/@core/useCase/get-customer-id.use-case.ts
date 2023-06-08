@@ -1,4 +1,4 @@
-import { CustomerRepositoryInterface } from '../domain/customer.repository';
+import { CustomerRepositoryInterface } from '../domain/repository/customer.repository';
 
 export class getCustomerById {
   constructor(private customerRepository: CustomerRepositoryInterface) {}

@@ -1,11 +1,12 @@
-import { Customer } from 'src/@core/domain/customer.entity';
-import { CustomerRepositoryInterface } from 'src/@core/domain/customer.repository';
+import { Customer } from 'src/@core/domain/entities/customer.entity';
+import { CustomerRepositoryInterface } from 'src/@core/domain/repository/customer.repository';
 import { Repository } from 'typeorm';
 
 export class CustomerTypeOrmRepository implements CustomerRepositoryInterface {
   constructor(private ormRepository: Repository<Customer>) {}
 
   insert(customer: Customer): Promise<Customer> {
+    console.log('************ type repo *******');
     return this.ormRepository.save(customer);
   }
   findAll(): Promise<Customer[]> {

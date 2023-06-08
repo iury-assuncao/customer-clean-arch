@@ -10,10 +10,12 @@ import { CustomerSchema } from './@core/adapters/typeorm/customer.schema';
       type: 'sqlite',
       database: join(__dirname, 'database.sqlite'),
       synchronize: true,
-      logging: true,
+      logging: false,
       entities: [CustomerSchema],
     }),
     CustomerModule,
   ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

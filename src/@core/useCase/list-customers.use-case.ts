@@ -1,5 +1,5 @@
-import { Customer } from '../domain/customer.entity';
-import { CustomerRepositoryInterface } from '../domain/customer.repository';
+import { Customer } from '../domain/entities/customer.entity';
+import { CustomerRepositoryInterface } from '../domain/repository/customer.repository';
 
 export class ListAllCustomersUseCase {
   constructor(private customerRepository: CustomerRepositoryInterface) {}

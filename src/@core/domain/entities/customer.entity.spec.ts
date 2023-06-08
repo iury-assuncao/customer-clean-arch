@@ -9,8 +9,12 @@ describe('contultant Tests', () => {
     };
     const customer = Customer.create(customerProps);
 
-    expect(customer.props).toStrictEqual({
-      ...customerProps,
-    });
+    expect(customer.cnpj).toStrictEqual(customerProps.cnpj);
+    expect(customer.fantasyName).toStrictEqual(customerProps.fantasyName);
+    expect(customer.consultantsTotal).toStrictEqual(
+      customerProps.consultantsTotal,
+    );
+
+    expect(customer.id).toHaveLength(36);
   });
 });

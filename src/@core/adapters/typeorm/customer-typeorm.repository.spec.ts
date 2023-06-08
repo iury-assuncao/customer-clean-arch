@@ -24,7 +24,6 @@ describe('CustomerTypeOrmRepository Test', () => {
     const customer = Customer.create(customerProps);
     await repository.insert(customer);
     const customerFound = await ormRepo.findOneBy({ id: customer.id });
-    console.log('customerFound.toJSON()', customerFound.toJSON());
     expect(customerFound.toJSON()).toStrictEqual(customer.toJSON());
   });
 });

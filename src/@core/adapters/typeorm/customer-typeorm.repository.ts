@@ -14,10 +14,8 @@ export class CustomerTypeOrmRepository implements CustomerRepositoryInterface {
   }
 
   findById(customerId: string): Promise<Customer> {
-    return this.ormRepository.findOne({
-      where: {
-        id: customerId,
-      },
+    return this.ormRepository.findOneBy({
+      id: customerId,
     });
   }
 }

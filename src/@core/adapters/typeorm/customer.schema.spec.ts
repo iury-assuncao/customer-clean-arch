@@ -13,8 +13,8 @@ describe('Customer schema', () => {
     });
     await dataSource.initialize();
     const customer = Customer.create({
-      cnpj: 'teste 222',
-      fantasyName: 'fantasy 222',
+      cnpj: '222',
+      fantasyName: 'fantasy name',
       consultantsTotal: 150,
     });
     const customerRepository = dataSource.getRepository(Customer);

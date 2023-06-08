@@ -9,6 +9,7 @@ import { ListAllCustomersUseCase } from 'src/@core/useCase/list-customers.use-ca
 import { DataSource } from 'typeorm';
 import { CustomerController } from './customer.controller';
 import { CustomerSchema } from 'src/@core/adapters/typeorm/customer.schema';
+import { GetCustomerByIdUseCase } from 'src/@core/useCase/get-customer-id.use-case';
 
 @Module({
   imports: [TypeOrmModule.forFeature([CustomerSchema])],
@@ -36,6 +37,13 @@ import { CustomerSchema } from 'src/@core/adapters/typeorm/customer.schema';
       provide: ListAllCustomersUseCase,
       useFactory: (customerRepository: CustomerRepositoryInterface) => {
         return new ListAllCustomersUseCase(customerRepository);
+      },
+      inject: [CustomerTypeOrmRepository],
+    },
+    {
+      provide: GetCustomerByIdUseCase,
+      useFactory: (customerRepository: CustomerRepositoryInterface) => {
+        return new GetCustomerByIdUseCase(customerRepository);
       },
       inject: [CustomerTypeOrmRepository],
     },

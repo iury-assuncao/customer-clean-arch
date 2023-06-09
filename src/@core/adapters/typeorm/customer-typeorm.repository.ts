@@ -6,7 +6,6 @@ export class CustomerTypeOrmRepository implements CustomerRepositoryInterface {
   constructor(private ormRepository: Repository<Customer>) {}
 
   insert(customer: Customer): Promise<Customer> {
-    console.log('************ type repo *******');
     return this.ormRepository.save(customer);
   }
   findAll(): Promise<Customer[]> {
@@ -17,5 +16,9 @@ export class CustomerTypeOrmRepository implements CustomerRepositoryInterface {
     return this.ormRepository.findOneBy({
       id: customerId,
     });
+  }
+  delete(id: string): Promise<void> {
+    this.ormRepository.delete({ id });
+    return;
   }
 }

@@ -39,7 +39,6 @@ export class Customer {
   }
 
   static create(props: CustomerProps, id?: string) {
-    console.log('********** aqui domain ************');
     return new Customer(props, id);
   }
 

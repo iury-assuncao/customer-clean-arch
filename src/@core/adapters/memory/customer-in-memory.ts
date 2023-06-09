@@ -2,6 +2,9 @@ import { Customer } from '../../domain/entities/customer.entity';
 import { CustomerRepositoryInterface } from '../../domain/repository/customer.repository';
 
 export class CustomerInMemoryRepository implements CustomerRepositoryInterface {
+  delete(id: string): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
   customers: Customer[] = [];
   async insert(customer: Customer): Promise<void> {
     this.customers.push(customer);

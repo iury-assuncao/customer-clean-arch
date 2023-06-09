@@ -5,7 +5,7 @@ describe('teste use case', () => {
   it('create customer', async () => {
     const repository = new CustomerInMemoryRepository();
     const createUseCase = new CreateCustomerUseCase(repository);
-    const output = await createUseCase.create({
+    const output = await createUseCase.execute({
       cnpj: '54545455445 teste',
       fantasyName: 'fantasy name usecase',
       consultantsTotal: 5,

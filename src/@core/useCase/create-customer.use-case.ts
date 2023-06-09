@@ -16,9 +16,8 @@ type CustomerPropsOutput = {
 
 export class CreateCustomerUseCase {
   constructor(private customerRepository: CustomerRepositoryInterface) {}
-  async create(input: CustomerPropsInput): Promise<CustomerPropsOutput> {
+  async execute(input: CustomerPropsInput): Promise<CustomerPropsOutput> {
     const customer = Customer.create(input);
-    console.log('************ case *******');
     await this.customerRepository.insert(customer);
     return customer.toJSON();
   }

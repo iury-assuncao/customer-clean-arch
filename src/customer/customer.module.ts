@@ -11,6 +11,7 @@ import { CustomerController } from './customer.controller';
 import { CustomerSchema } from 'src/@core/adapters/typeorm/customer.schema';
 import { GetCustomerByIdUseCase } from 'src/@core/useCase/get-customer-id.use-case';
 import { DeleteCustomerUseCase } from 'src/@core/useCase/delete-customer.use-case';
+import { UpdateCustomerUseCase } from 'src/@core/useCase/update-customer.use-case';
 
 @Module({
   imports: [TypeOrmModule.forFeature([CustomerSchema])],
@@ -45,6 +46,13 @@ import { DeleteCustomerUseCase } from 'src/@core/useCase/delete-customer.use-cas
       provide: GetCustomerByIdUseCase,
       useFactory: (customerRepository: CustomerRepositoryInterface) => {
         return new GetCustomerByIdUseCase(customerRepository);
+      },
+      inject: [CustomerTypeOrmRepository],
+    },
+    {
+      provide: UpdateCustomerUseCase,
+      useFactory: (customerRepository: CustomerRepositoryInterface) => {
+        return new UpdateCustomerUseCase(customerRepository);
       },
       inject: [CustomerTypeOrmRepository],
     },

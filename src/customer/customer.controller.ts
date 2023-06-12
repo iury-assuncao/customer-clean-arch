@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   Post,
+  Put,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -12,6 +13,7 @@ import { CreateCustomerUseCase } from 'src/@core/useCase/create-customer.use-cas
 import { DeleteCustomerUseCase } from 'src/@core/useCase/delete-customer.use-case';
 import { GetCustomerByIdUseCase } from 'src/@core/useCase/get-customer-id.use-case';
 import { ListAllCustomersUseCase } from 'src/@core/useCase/list-customers.use-case';
+import { UpdateCustomerUseCase } from 'src/@core/useCase/update-customer.use-case';
 import { CreateCustomerDto } from 'src/customer/dtos/create-customer.dto';
 import { ReturnCustomerDto } from 'src/customer/dtos/return-customer.dto';
 
@@ -22,6 +24,7 @@ export class CustomerController {
     private readonly listAllCustomerUseCase: ListAllCustomersUseCase,
     private readonly getCustomerByIdUseCase: GetCustomerByIdUseCase,
     private readonly deleteCustomerUseCase: DeleteCustomerUseCase,
+    private readonly updateCustomerUseCase: UpdateCustomerUseCase,
   ) {}
   @UsePipes(ValidationPipe)
   @Post()
@@ -39,6 +42,11 @@ export class CustomerController {
   @Get(':id')
   findById(@Param('id') id: string) {
     return this.getCustomerByIdUseCase.getById(id);
+  }
+
+  @Put(':id')
+  update(@Param('id') id: string, @Body() customerUpdate: CreateCustomerDto) {
+    return this.updateCustomerUseCase.execute(id, customerUpdate);
   }
 
   @Delete(':id')

@@ -1,4 +1,5 @@
-import { Customer, CustomerProps } from '../../domain/entities/customer.entity';
+import { CustomerProps } from 'src/@core/domain/types/customerInput';
+import { Customer } from '../../domain/entities/customer.entity';
 import { CustomerInMemoryRepository } from './customer-in-memory';
 
 describe('Test customer in memory', () => {

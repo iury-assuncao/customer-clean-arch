@@ -1,8 +1,4 @@
-export type CustomerProps = {
-  cnpj: string;
-  fantasyName: string;
-  consultantsTotal: number;
-};
+import { CustomerProps } from '../types/customerInput';
 
 function create_UUID() {
   let dt = new Date().getTime();
@@ -19,7 +15,6 @@ function create_UUID() {
 
 export class Customer {
   public readonly id: string;
-  //public props: Required<CustomerProps>;
   public cnpj: string;
   public fantasyName: string;
   public consultantsTotal: number;

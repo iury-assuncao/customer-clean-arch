@@ -1,4 +1,5 @@
-import { Customer, CustomerProps } from './customer.entity';
+import { CustomerProps } from '../types/customerInput';
+import { Customer } from './customer.entity';
 
 describe('contultant Tests', () => {
   it('constructor', () => {

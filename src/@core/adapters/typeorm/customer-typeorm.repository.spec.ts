@@ -1,7 +1,8 @@
-import { Customer, CustomerProps } from '../../domain/entities/customer.entity';
+import { Customer } from '../../domain/entities/customer.entity';
 import { DataSource } from 'typeorm';
 import { CustomerTypeOrmRepository } from './customer-typeorm.repository';
 import { CustomerSchema } from './customer.schema';
+import { CustomerProps } from 'src/@core/domain/types/customerInput';
 
 describe('CustomerTypeOrmRepository Test', () => {
   it('should insert a new customer', async () => {

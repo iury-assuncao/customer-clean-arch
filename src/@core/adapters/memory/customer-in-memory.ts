@@ -3,7 +3,7 @@ import { Customer } from '../../domain/entities/customer.entity';
 import { CustomerRepositoryInterface } from '../../domain/repository/customer.repository';
 
 export class CustomerInMemoryRepository implements CustomerRepositoryInterface {
-  update(id: string, customer: CustomerProps): Promise<void | Customer> {
+  update(id: string, customer: CustomerProps): Promise<Customer> {
     throw new Error('Method not implemented.');
   }
   delete(id: string): Promise<void> {

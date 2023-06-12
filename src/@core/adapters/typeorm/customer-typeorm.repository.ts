@@ -13,26 +13,13 @@ export class CustomerTypeOrmRepository implements CustomerRepositoryInterface {
   }
 
   async findById(id: string): Promise<Customer> {
-    const customerExists = await this.ormRepository.findOneBy({
-      id: id,
-    });
-    if (!customerExists) {
-      throw new Error('Customer is not exist');
-    }
     return await this.ormRepository.findOneBy({
       id: id,
     });
   }
 
-  async update(id: string, customer: Customer): Promise<Customer | void> {
-    const customerExists = await this.ormRepository.findOneBy({
-      id: id,
-    });
-
-    if (!customerExists) {
-      throw new Error('Customer is not exist');
-    }
-    this.ormRepository.update(
+  async update(id: string, customer: Customer): Promise<any> {
+    const customerUpdate = await this.ormRepository.update(
       { id: id },
       {
         cnpj: customer.cnpj,
@@ -40,15 +27,10 @@ export class CustomerTypeOrmRepository implements CustomerRepositoryInterface {
         fantasyName: customer.fantasyName,
       },
     );
-    return;
+    return customerUpdate;
   }
+
   async delete(id: string) {
-    const customerExists = this.ormRepository.findOne({ where: { id } });
-    console.log(customerExists);
-    if (!customerExists) {
-      console.log('não existe');
-      return new Error('Customer is not exist');
-    }
     return this.ormRepository.delete({ id });
   }
 }

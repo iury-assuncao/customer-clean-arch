@@ -3,6 +3,9 @@ import {
   Controller,
   Delete,
   Get,
+  HttpException,
+  HttpStatus,
+  NotFoundException,
   Param,
   Post,
   Put,
@@ -40,8 +43,14 @@ export class CustomerController {
   }
 
   @Get(':id')
-  findById(@Param('id') id: string) {
-    return this.getCustomerByIdUseCase.getById(id);
+  async findById(@Param('id') id: string) {
+    const result = await this.getCustomerByIdUseCase.execute(id);
+
+    if (result.isLeft()) {
+      throw new HttpException(result.value.message, result.value.statusCode);
+    }
+
+    return result;
   }
 
   @Put(':id')

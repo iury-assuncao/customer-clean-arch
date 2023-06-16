@@ -4,8 +4,6 @@ import {
   Delete,
   Get,
   HttpException,
-  HttpStatus,
-  NotFoundException,
   Param,
   Post,
   Put,
@@ -19,6 +17,12 @@ import { ListAllCustomersUseCase } from 'src/@core/useCase/list-customers.use-ca
 import { UpdateCustomerUseCase } from 'src/@core/useCase/update-customer.use-case';
 import { CreateCustomerDto } from 'src/customer/dtos/create-customer.dto';
 import { ReturnCustomerDto } from 'src/customer/dtos/return-customer.dto';
+
+function validationReturnUseCase(result: any) {
+  if (result.isLeft()) {
+    throw new HttpException(result.value.message, result.value.statusCode);
+  }
+}
 
 @Controller('customer')
 export class CustomerController {
@@ -38,28 +42,34 @@ export class CustomerController {
   }
 
   @Get()
-  findAll() {
-    return this.listAllCustomerUseCase.findAll();
+  async findAll() {
+    const result = await this.listAllCustomerUseCase.execute();
+    validationReturnUseCase(result);
+    return result.value;
   }
 
   @Get(':id')
   async findById(@Param('id') id: string) {
     const result = await this.getCustomerByIdUseCase.execute(id);
-
-    if (result.isLeft()) {
-      throw new HttpException(result.value.message, result.value.statusCode);
-    }
-
-    return result;
+    validationReturnUseCase(result);
+    return result.value;
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() customerUpdate: CreateCustomerDto) {
-    return this.updateCustomerUseCase.execute(id, customerUpdate);
+  async update(
+    @Param('id') id: string,
+    @Body() customerUpdate: CreateCustomerDto,
+  ) {
+    const result = await this.updateCustomerUseCase.execute(id, customerUpdate);
+    validationReturnUseCase(result);
+    return result.value;
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    this.deleteCustomerUseCase.execute(id);
+  async remove(@Param('id') id: string) {
+    const result = await this.deleteCustomerUseCase.execute(id);
+    validationReturnUseCase(result);
+
+    return result.value;
   }
 }

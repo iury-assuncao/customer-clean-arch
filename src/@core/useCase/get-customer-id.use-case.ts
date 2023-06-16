@@ -5,24 +5,25 @@ import { StatusCode } from '../domain/errors/status-code.enum';
 import { CustomerRepositoryInterface } from '../domain/repository/customer.repository';
 
 type response = Either<RequiredParametersError, Customer>;
+
 export class GetCustomerByIdUseCase {
   constructor(private customerRepository: CustomerRepositoryInterface) {}
   async execute(id: string): Promise<response> {
     if (id.length != 36) {
       return left(
         new RequiredParametersError(
-          'Id em formato incorreto',
+          'o id deve ser do tipo uuid',
           StatusCode.Bad_Request,
         ),
       );
     }
     const customer = await this.customerRepository.findById(id);
-    console.log(customer);
-    if (customer == null) {
+
+    if (!customer) {
       return left(
         new RequiredParametersError(
-          'Customer not found',
-          StatusCode.Bad_Request,
+          'Cliente não encontrado',
+          StatusCode.Not_found,
         ),
       );
     }
